@@ -1,4 +1,3 @@
-// FormGenerator.jsx
 
 import React, { useState, useEffect } from 'react';
 import {
@@ -20,15 +19,11 @@ const FormGenerator = () => {
   const [formErrors, setFormErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
   const [editMode, setEditMode] = useState(false);
-
-  // Additional state for conditional visibility
   const [selectedQualification, setSelectedQualification] = useState('');
   const [showQualificationFields, setShowQualificationFields] = useState(false);
-
-  // State for JSON data
   const [jsonData, setJsonData] = useState('');
 
-  // Effect to update JSON data whenever formFields change
+  
   useEffect(() => {
     const json = JSON.stringify(formFields, null, 2);
     setJsonData(json);
