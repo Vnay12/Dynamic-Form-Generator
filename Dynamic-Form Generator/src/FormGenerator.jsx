@@ -24,22 +24,22 @@ const FormGenerator = () => {
   const [jsonData, setJsonData] = useState('');
 
   
-  useEffect(() => {
-    const json = JSON.stringify(formFields, null, 2);
+  useEffect(() => {                                                           // to set the json configurtaion on click of sae configuration 
+    const json = JSON.stringify(formFields, null, 2);  
     setJsonData(json);
   }, [formFields]);
 
   const addFormField = (fieldType) => {
-    setFormFields([...formFields, { type: fieldType, label: '', options: [] }]);
+    setFormFields([...formFields, { type: fieldType, label: '', options: [] }]);  // function to add new field 
   };
 
-  const removeFormField = (index) => {
+  const removeFormField = (index) => {                                        // function to remove field 
     const updatedFormFields = [...formFields];
     updatedFormFields.splice(index, 1);
     setFormFields(updatedFormFields);
   };
 
-  const handleFieldChange = (index, key, value) => {
+  const handleFieldChange = (index, key, value) => {                           // to handle field change 
     const updatedFormFields = [...formFields];
     updatedFormFields[index][key] = value;
     setFormFields(updatedFormFields);
@@ -48,7 +48,7 @@ const FormGenerator = () => {
   const validateForm = () => {
     const errors = {};
 
-    formFields.forEach((field, index) => {
+    formFields.forEach((field, index) => {                                   // function to check erroes on each field 
       if (!field.label.trim()) {
         errors[index] = 'Label cannot be empty';
       }
@@ -65,7 +65,7 @@ const FormGenerator = () => {
     return Object.keys(errors).length === 0;
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = () => {                                    // to handle submit button 
     const isValid = validateForm();
 
     if (isValid) {
@@ -76,15 +76,13 @@ const FormGenerator = () => {
     }
   };
 
-  const handleEditClick = () => {
-    setEditMode(true);
-    setSubmitted(false); // Reset submitted state when going back to edit mode
+  const handleEditClick = () => {                                                 // to handle edit button 
+    setEditMode(true); 
+    setSubmitted(false); 
   };
 
-  const handleQualificationChange = (event) => {
+  const handleQualificationChange = (event) => {                             // to handle qualification tab 
     const selectedQualification = event.target.value;
-
-    // Update visibility based on the selected qualification
     setSelectedQualification(selectedQualification);
     setShowQualificationFields(selectedQualification !== '');
   };
@@ -164,15 +162,12 @@ const FormGenerator = () => {
     return null;
   };
 
-  const handleSaveClick = () => {
-    // Save the form configuration as JSON
+  const handleSaveClick = () => {                                // to save the field configuration into json 
     const json = JSON.stringify(formFields, null, 2);
-    // You can save the JSON data using your preferred method, e.g., to a file or a database
     console.log('Form configuration saved:', json);
   };
 
-  const handleLoadClick = () => {
-    // Load the form configuration from JSON
+  const handleLoadClick = () => {                             // to handle loade configuration of json 
     try {
       const loadedFormFields = JSON.parse(jsonData);
       setFormFields(loadedFormFields);

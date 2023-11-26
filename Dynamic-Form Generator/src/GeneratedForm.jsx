@@ -1,4 +1,3 @@
-// GeneratedForm.jsx
 
 import React from 'react';
 import { Typography, Paper, Button } from '@mui/material';
@@ -63,18 +62,15 @@ const GeneratedForm = ({ formName, formFields }) => {
     const updatedFormFields = [...formFields];
     updatedFormFields[index].value = file;
 
-    // Check file type based on the accept attribute
+
     if (file && updatedFormFields[index].accept) {
       const acceptedTypes = updatedFormFields[index].accept.split(',').map((type) => type.trim());
       if (!acceptedTypes.includes(file.type)) {
         alert('Invalid file type. Please upload a valid file.');
-        // You may clear the file input or handle the error as needed
         return;
       }
     }
 
-    // Continue with the rest of your logic
-    // ...
   };
 
   return (
